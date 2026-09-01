@@ -54,12 +54,12 @@ exports.registerUser = async (req, res) => {
 // =======================================
 exports.loginUser = async (req, res) => {
   try {
-    console.log("JWT_SECRET =", process.env.JWT_SECRET);
+    
 
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    console.log("USER:", user);
+    
 
     if (!user) {
       return res.status(404).json({
@@ -69,7 +69,7 @@ exports.loginUser = async (req, res) => {
     }
 
     const match = await bcrypt.compare(password, user.password);
-    console.log("PASSWORD MATCH:", match);
+    
 
     if (!match) {
       return res.status(401).json({
@@ -78,7 +78,7 @@ exports.loginUser = async (req, res) => {
       });
     }
 
-    console.log("JWT_SECRET:", process.env.JWT_SECRET);
+    
 
     const token = jwt.sign(
       {

@@ -1,3 +1,4 @@
+const protect = require("../middleware/auth");
 const express = require("express");
 const router = express.Router();
 const Product = require("../models/Product");
@@ -15,18 +16,18 @@ const {
   changePassword,
 } = require("../controllers/userController");
 
-router.get("/profile/:id", getProfile);
+router.get("/profile/:id", protect, getProfile);
 
-router.put("/profile/:id", updateProfile);
+router.put("/profile/:id", protect, updateProfile);
 
-router.put("/change-password/:id", changePassword);
+router.put("/change-password/:id", protect, changePassword);
 
-router.get("/:id/addresses", getAddresses);
+router.get("/:id/addresses", protect, getAddresses);
 
-router.post("/:id/addresses", addAddress);
+router.post("/:id/addresses", protect, addAddress);
 
-router.put("/:userId/addresses/:addressId", updateAddress);
+router.put("/:userId/addresses/:addressId", protect, updateAddress);
 
-router.delete("/:userId/addresses/:addressId", deleteAddress);
+router.delete("/:userId/addresses/:addressId", protect, deleteAddress);
 
 module.exports = router;

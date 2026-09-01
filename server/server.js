@@ -34,13 +34,13 @@ const invoiceRoutes = require("./routes/invoiceRoutes");
 const couponRoutes = require("./routes/couponRoutes");
 
 // Debug
-console.log("Auth Routes =", authRoutes);
+
 
 // =====================
 // API Routes
 // =====================
 app.use("/api/auth", (req, res, next) => {
-  console.log("AUTH ROUTE HIT:", req.method, req.originalUrl);
+  
   next();
 });
 
